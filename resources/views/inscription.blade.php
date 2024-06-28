@@ -38,42 +38,42 @@
 
     <script src="{{ asset('jquery-3.6.0.min.js') }}"></script>
     <script>
-         function display_image(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#image_name').attr('src', e.target.result)
-                      
-                    }
+        function display_image(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image_name').attr('src', e.target.result)
+
                 }
-                reader.readAsDataURL(input.files[0]);
             }
-
-            $('.form_inscription').on('submit',function(e){
-    e.preventDefault()
-
-    var data=$(this)[0];
-    var formData=new FormData(data)
-
-    $.ajax({
-        url:'{{URL::to("createUser")}}',
-        type:'post',
-        data:formData,
-        contentType:false,
-        processData:false,
-        success:(response)=>{
-            if(response.success){
-                alert(response.success)
-                data.reset()
-                window.location.href="{{URL::to('connexion')}}"
-            }
-        },
-        error:(error)=>{
-            console.log(error)
+            reader.readAsDataURL(input.files[0]);
         }
 
-    })
-})
+        $('.form_inscription').on('submit', function(e) {
+            e.preventDefault()
+
+            var data = $(this)[0];
+            var formData = new FormData(data)
+
+            $.ajax({
+                url: '{{ URL::to('createUser') }}',
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    if (response.success) {
+                        alert(response.success)
+                        data.reset()
+                        window.location.href = "{{ URL::to('connexion') }}"
+                    }
+                },
+                error: (error) => {
+                    console.log(error)
+                }
+
+            })
+        })
     </script>
 </body>
 

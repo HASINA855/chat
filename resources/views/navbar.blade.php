@@ -5,7 +5,7 @@
                 <img src="{{ asset('profile_users/' . Auth::user()->profile) }}"
                     style="width: 50px;height:50px;cursor: pointer"
                     class="rounded-circle shadow p-2 toggle_menu" alt="">
-                <div class="bg- shadow menu" style="position: absolute;display: none">
+                <div class="bg- shadow menu" style="position: absolute;display: none;z-index:100">
                     <div class="list-group">
                         <a href="#"
                             class="list-group-item list-group-item-action d-flex align-item-center justify-content-start"

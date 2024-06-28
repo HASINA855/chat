@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Auth;
 class InscriptionController extends Controller
 {
     
     public function index()
     {
-        return view('inscription');
+        if (Auth::user()) {
+            return view('discution');
+        }else{
+            return view('inscription');
+        }
+        
     }
 
 
