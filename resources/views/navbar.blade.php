@@ -1,5 +1,5 @@
 <div class="card-header">
-    <div class="d-flex align-item-center flex-wrap justify-content-between" style="gap:20px" >
+    <div class="d-flex align-item-center flex-wrap justify-content-between" style="gap:70px" >
         <div class="d-flex align-items-center justify-content-start flex-wrap" style="gap: 10px">
             <div style="position: relative">
                 <img src="{{ asset('profile_users/' . Auth::user()->profile) }}"

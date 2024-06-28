@@ -15,7 +15,6 @@
     @vite('resources/js/message.js')
 </head>
 <style>
-    
     .hide {
         display: none !important;
     }
@@ -25,25 +24,44 @@
         z-index: 100;
     }
 
-audio{
-    width: 200px;
-    border-radius: 30px!important;
-}
-.left__message{
-    background-color: #3498dbc0;
-    /* border: 1px solid rgba(128, 128, 128, 0.253) */
-    /* box-shadow: 0px 0px 3px rgba(128, 128, 128, 0.911) inset; */
-    border-radius: 30px!important;
-    padding: 10px 20px!important;
-    color: white!important
-}
-.right__message{
-    background-color: #ecf0f1;
-    border-radius: 30px!important;
-    padding: 10px 20px!important;
-}
+    audio {
+        width: 200px;
+        border-radius: 30px !important;
+    }
 
+    .left__message {
+        background-color: #3498dbc0;
+        /* border: 1px solid rgba(128, 128, 128, 0.253) */
+        /* box-shadow: 0px 0px 3px rgba(128, 128, 128, 0.911) inset; */
+        border-radius: 30px !important;
+        padding: 10px 20px !important;
+        color: white !important;
+        border-bottom-right-radius: 0 !important;
+
+    }
+
+    .right__message {
+        background-color: #ecf0f1;
+        border-radius: 30px !important;
+        padding: 10px 20px !important;
+        border-bottom-right-radius: 0 !important
+    }
+
+    div.emojionearea,
+    textarea {
+        border-radius: 30px !important;
+        padding: 0px 5px!important;
+        outline: none;
+        resize: none;
+       
+    }
+    * {
+        scrollbar-color: #95a5a6 #ecf0f1;
+        scrollbar-width: thin;
+        scroll-behavior: smooth
+    }
     
+   
 </style>
 
 <body style="height: 100vh;" class="d-flex align-items-center justify-content-center">
@@ -51,7 +69,7 @@ audio{
     <!-- The Modal -->
     <div class="modal" id="myModal">
         <div class="modal-dialog modal-dialog-centered ">
-            <div class="modal-content border-0" >
+            <div class="modal-content border-0">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
@@ -66,13 +84,14 @@ audio{
             </div>
         </div>
     </div>
-    <div class="card" >
+    <div class="card">
         <div class="card-header">
-            <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-between" style="gap:60px">
 
                 <div class="d-flex align-item-center justify-content-start" style="gap: 10px">
-                    <a href="{{ URL::to('/discution') }}"><img src="{{ asset('icones/back-square-svgrepo-com.svg') }}"
-                            width="20" alt=""></a>
+                    <a href="{{ URL::to('/discution') }}" style="text-decoration: none;font-size: 15px"><img
+                            src="{{ asset('icones/left-arrow-direction-navigation-svgrepo-com.svg') }}" width="25"
+                            class="mx-2" alt=""></a>
                     <img src="{{ asset('profile_users/' . Auth::user()->profile) }}" width="40"
                         class="rounded-circle p-1" alt="">
                     <img src="{{ asset('profile_users/' . $profile->profile) }}" width="40"
@@ -90,10 +109,11 @@ audio{
                         </div>
                     </form>
                     <div style="position:relative" class="btn_toogle_menu">
-                        <a href="javascript:void(0)" class="text-muted btn shadow-none"><i class="fa fa-ellipsis-h"></i></a>
+                        <a href="javascript:void(0)" class="text-muted btn shadow-none"><i
+                                class="fa fa-ellipsis-h"></i></a>
                         <div class="list-group toggle_menu_messanger"
                             style="position: absolute ;right:0;display: none;min-width: 250px;">
-                            <a href="#" class="list-group-item list-group-item-action"  data-bs-toggle="modal"
+                            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal"
                                 data-bs-target="#myModal">Fichiers images</a>
                             <a href="#" class="list-group-item list-group-item-action">Suprimer votre
                                 discution</a>
@@ -138,14 +158,16 @@ audio{
                 <input type="hidden" name="id_user" id="id_chat" value="{{ $user_id }}">
                 <input type="hidden" name="id_discution" id="id__discution" value="{{ $id_discution }}">
                 <textarea type="text" class="form-control" id="text_message" name="message" placeholder="message"
-                    cols="3" rows="3"></textarea>
+                    cols="3" rows="1"></textarea>
                 <div>
                     <a href="javascript:void(0)" class=" recorder_audio btn shadow-none p-0 rounded-0"> <img
                             src="{{ asset('icones/microphone-svgrepo-com-2.svg') }}" width="20" alt=""
                             class="start_record"></a>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-outline-secondary shadow-none border-0 p-1 "><img src="{{asset('icones/paper-plane-svgrepo-com-1.svg')}}" width="30" alt=""></button>
+                    <button type="submit" class="btn btn-outline-secondary shadow-none border-0 p-1 "><img
+                            src="{{ asset('icones/paper-plane-svgrepo-com-1.svg') }}" width="30"
+                            alt=""></button>
                 </div>
 
             </form>
@@ -159,9 +181,7 @@ audio{
     <script src="{{ asset('js/tiny-slider.js') }}"></script>
     <script src="{{ asset('bootstrap.min.js') }}"></script>
     <script>
-
-        
-            $.ajax({
+        $.ajax({
             url: '{{ URL::to('get_images_messages') }}/{{ $id_discution }}',
             type: 'get',
             dataType: 'json',
@@ -222,8 +242,8 @@ audio{
                 $('[data-controls="next"]').addClass('btn btn-light rounded-circle shadow m-1')
             }
         })
-        
-        
+
+
         window.id_discution = {{ $id_discution }}
 
         function display_image(input) {
@@ -255,7 +275,7 @@ audio{
             )
             $('#recorder_file').hide()
         })
-        $('textarea').on('input',function(){
+        $('textarea').on('input', function() {
             $.ajax({
                 url: '{{ URL::to('listen_processing_message') }}/{{ $id_discution }}',
                 type: 'get',
@@ -331,7 +351,7 @@ audio{
                                     data += '</div>'
                                 }
                                 if (response[i].message) {
-                                  
+
                                     data += ' <span>' + response[i].message + '</span><br>'
                                 }
 

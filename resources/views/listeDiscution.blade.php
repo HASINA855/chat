@@ -1,3 +1,5 @@
+
+
 <script src="{{ asset('jquery-3.6.0.min.js') }}"></script>
 <script>
     get_discution()
@@ -14,7 +16,7 @@
                         .user
                         .id + '" user_to="' + response[i].user.email +
                         '" profile="' + response[i].user.profile +
-                        '"  class="d-flex align-item-center justify-content-between mb-2 chatWith" style="cursor:pointer">'
+                        '"  class="d-flex align-item-center justify-content-between mb-2 chatWith " style="cursor:pointer">'
                     data += '<div class="d-flex align-item-start justify-content-start" style="gap: 10px">'
                     data += '<div style="position: relative" >'
                     data += '<img src="http://127.0.0.1:8000/profile_users/' + response[i].user.profile +
@@ -80,3 +82,10 @@
         })
     }
 </script>
+
+<style>
+    .chatWith{
+        background-color: red!important
+    }
+
+</style>

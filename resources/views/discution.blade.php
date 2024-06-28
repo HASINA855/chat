@@ -17,6 +17,8 @@
         scrollbar-width: thin;
         scroll-behavior: smooth
     }
+    
+    
 </style>
 
 <body class="d-flex align-items-center justify-content-center" style="height: 100vh">

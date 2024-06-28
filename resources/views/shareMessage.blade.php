@@ -18,7 +18,7 @@
     @include('animate')
     <div class="card">
         <div class="card-header">
-            <div class="d-flex align-items-center justify-content-between" style="gap: 10px">
+            <div class="d-flex align-items-center justify-content-between" style="gap: 70px">
                 <h5>Transfert</h5>
                 <form id="form_search_to_share">
                     <div class="input-group rounded-pill">
