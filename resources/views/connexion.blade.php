@@ -12,7 +12,7 @@
 
 <body style="height: 100vh" class="d-flex align-items-center justify-content-center">
     <form class="w-25 rounded shadow p-2 form_connexion">
-        <h3 class="text-center">Connex</h3>
+        <h3 class="text-center">Connexion</h3>
         <hr>
         @csrf
         <input type="text" name="email" class="form-control mb-2" id="" placeholder="Votre email">
