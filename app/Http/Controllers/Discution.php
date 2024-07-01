@@ -33,4 +33,16 @@ class Discution extends Controller
         }
         return $table_user;
     }
+
+    public function add_new_discution($user_id){
+       $is_on_discution=ModelsDiscution::where(['user1'=>Auth::user()->id,'user2'=>$user_id])->get();
+       if(count($is_on_discution)==0){
+        ModelsDiscution::create([
+            'user1'=>Auth::user()->id,
+            'user2'=>$user_id
+        ]);
+       }
+        
+       return ModelsDiscution::where(['user1'=>Auth::user()->id,'user2'=>$user_id])->get();
+    }
 }

@@ -49,7 +49,7 @@
 
     div.emojionearea,
     textarea {
-        border-radius: 30px !important;
+        /* border-radius: 30px !important; */
         padding: 0px 5px!important;
         outline: none;
         resize: none;
@@ -59,6 +59,10 @@
         scrollbar-color: #95a5a6 #ecf0f1;
         scrollbar-width: thin;
         scroll-behavior: smooth
+
+    }
+    body{
+        background-image: url('{{asset("inscription/images/stock-vector-abstract-white-and-gray-color-modern-design-stripes-background-with-geometric-round-shape-vector-2275076235.jpg")}}')
     }
     
    
@@ -84,14 +88,12 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mx-sm-3 mx-3">
         <div class="card-header">
             <div class="d-flex align-items-center justify-content-between" style="gap:60px">
 
-                <div class="d-flex align-item-center justify-content-start" style="gap: 10px">
-                    <a href="{{ URL::to('/discution') }}" style="text-decoration: none;font-size: 15px"><img
-                            src="{{ asset('icones/left-arrow-direction-navigation-svgrepo-com.svg') }}" width="25"
-                            class="mx-2" alt=""></a>
+                <div class="d-flex align-items-center justify-content-start" style="gap: 10px">
+                    <a href="{{ URL::to('/discution') }}" class="btn btn-sm btn-info px-1 shadow-none text-light" style="text-decoration: none;font-size: 15px">Back</a>
                     <img src="{{ asset('profile_users/' . Auth::user()->profile) }}" width="40"
                         class="rounded-circle p-1" alt="">
                     <img src="{{ asset('profile_users/' . $profile->profile) }}" width="40"
@@ -132,7 +134,7 @@
             <input name="id_user" value="{{ $user_id }}">
             <input name="id_discution" value="{{ $id_discution }}">
         </form>
-        <div id="recorder_file" style="display: none">
+        <div id="recorder_file" style="display: none" class="px-3">
             <span class="text-muted" style="font-size: 15px">Enregistrement......</span>
             <img src="{{ asset('icones/64a6b0e0740e455bda54f399_Waveform.gif') }}" width="400" height="50"
                 alt="">
@@ -364,7 +366,7 @@
 
                                 if (response[i].status != 0) {
                                     data +=
-                                        '<input class="form-check-input small  rounded-circle shadow-none" readonly type="checkbox" id="check1" name="option1" value="something" checked>'
+                                        '<input class="form-check-input small  rounded-circle shadow-none" disabled readonly type="checkbox" id="check1" name="option1" value="something"  checked>'
                                     data +=
                                         '<label class="form-check-label text-muted" style="font-size: 13px">vu</label>'
                                 }

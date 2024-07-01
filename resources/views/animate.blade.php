@@ -1,7 +1,11 @@
 
 <style>
-    body{
-       background:  #bdc3c7
+     body{
+        /* background-image: url('{{asset("inscription/images/abstract-futuristic-background-black-polygon-260nw-1463160338.webp")}}');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat */
+        background: -webkit-linear-gradient(top, grey, grey 50%, rgb(196, 192, 192) 50%, rgb(190, 190, 190));
     }
     img{
         border-radius: 5px

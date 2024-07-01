@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discution;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class InscriptionController extends Controller
 {
-    
     public function index()
     {
         if (Auth::user()) {
             return view('discution');
-        }else{
+        } else {
             return view('inscription');
         }
-        
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -54,12 +53,23 @@ class InscriptionController extends Controller
             'profile' => $photo_profile,
             'password' => Hash::make($request->password),
         ]);
-        return response()->json(['success'=>'creation de votre compte avec success']);
+        return response()->json(['success' => 'creation de votre compte avec success']);
     }
 
- 
-    public function searchDiscution($data){
-        return json_decode(User::where('nom','like',"%$data%")->orwhere('prenom','like',"%$data%")->get());
-    }
+    public function searchDiscution($data)
+    {
+        $searchUsers = User::where('nom', 'like', "%$data%")
+            ->orwhere('prenom', 'like', "%$data%")
+            ->get();
 
+        $data = [];
+        foreach ($searchUsers as $searchUser) {
+            //      $table->integer('user1');
+            // $table->integer('user2');
+            $isOnDiscution = DB::select('select * from discutions where (user1=? AND user2=?) OR (user2=? AND user1=?)', [Auth::user()->id, $searchUser->id, Auth::user()->id, $searchUser->id]);
+            array_push($data, ['user' => $searchUser, 'discution' => $isOnDiscution]);
+        }
+
+        return $data;
+    }
 }

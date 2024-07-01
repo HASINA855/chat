@@ -10,6 +10,7 @@
     <script src="{{ asset('bootstrap.min.js') }}" defer></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/emojionearea.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 </head>
 <style>
     * {
@@ -69,6 +70,7 @@
         })
     </script>
     @vite('resources/js/listeDiscution.js')
+    <script src="{{ asset('js/all.min.js') }}"></script>
 </body>
 
 </html>

@@ -135,6 +135,7 @@ Route::group(['middleware' => 'auth.user'], function () {
 
     Route::get('searchMessage/{id_discution}/{data}', [MessageControll::class, 'searchMessage']);
     Route::get('search_user_to_share/{data}', [MessageControll::class, 'search_user_to_share']);
+    Route::get('add_to_discution/{user_id}',[ControllersDiscution::class,'add_new_discution']);
 });
 
 Route::get('s_inscrire',function(){
