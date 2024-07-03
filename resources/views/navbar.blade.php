@@ -1,6 +1,6 @@
 <div class="card-header">
-    <div class="d-flex align-item-center flex-wrap justify-content-between" style="gap:70px" >
-        <div class="d-flex align-items-center justify-content-start flex-wrap" style="gap: 10px">
+    <div class="d-flex align-item-center  justify-content-between" style="gap:70px" >
+        <div class="d-flex align-items-center justify-content-start " style="gap: 10px">
             <div style="position: relative">
                 <img src="{{ asset('profile_users/' . Auth::user()->profile) }}"
                     style="width: 50px;height:50px;cursor: pointer"
@@ -28,7 +28,7 @@
         <div class="d-flex align-items-center justify-content-start flex-wrap" style="gap: 10px">
             <form id="form_search_discution">
                 <div class="input-group rounded-pill">
-                    <input type="text" id="search_discution" class="form-control form-control-sm shadow-none"
+                    <input type="search" id="search_discution" class="form-control form-control-sm shadow-none"
                         placeholder="Recherche .......">
                     <button class="input-group-text" type="submit"><img
                             src="{{ asset('icones/search-left-1504-svgrepo-com.svg') }}" width="10"

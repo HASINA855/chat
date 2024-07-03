@@ -67,6 +67,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
     <script src="{{ asset('bootstrap.min.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('inscription/css/style.css') }}">
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css " rel="stylesheet">
 </head>
 
 
@@ -75,20 +76,21 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        background-image: url('{{ asset("inscription/images/10266305.png") }}');
+        background-image: url('{{ asset('inscription/images/10266305.png') }}');
         height: 90vh;
-   width:100%;
+        width: 100%;
         border-top-left-radius: 7px;
         border-bottom-left-radius: 7px;
-        
+
     }
 
     @media all and (max-width:766px) {
         .inner {
             display: none;
         }
-        .content_form{
-            border: none!important
+
+        .content_form {
+            border: none !important
         }
     }
 </style>
@@ -96,9 +98,9 @@
 <body>
 
     <!-- Registration 4 - Bootstrap Brain Component -->
-    <section class="p-3 p-md-4 p-xl-5">
+    <section class=" d-flex align-items-center" style="height: 100vh">
         <div class="container ">
-            <div class="card border-light-subtle shadow-sm mx-auto" style="height: 90vh;width: 75%">
+            <div class="card border-light-subtle shadow-sm mx-auto" style="width: 75%">
                 <div class="row  rounded ">
                     <div class="col-12 p-0 col-md-6 " style="box-sizing: border-box;">
                         <div class="inner">
@@ -106,7 +108,8 @@
                         </div>
                         {{-- <img class="img-fluid rounded-start w-100  object-fit-cover" loading="lazy" src="{{asset("inscription/images/social-media-5187243_960_720.webp")}}"; alt="BootstrapBrain Logo"> --}}
                     </div>
-                    <div class="col-12 col-md-6 d-flex align-items-center content_form" style="height: 90vh;border-left: 1px solid rgba(128, 128, 128, 0.363)">
+                    <div class="col-12 col-md-6 d-flex align-items-center content_form"
+                        style="border-left: 1px solid rgba(128, 128, 128, 0.363)">
                         <div class="card-body  p-xl-5">
                             <div class="row ">
                                 <div class="col-12">
@@ -118,10 +121,10 @@
                             </div>
                             <form class="form_connexion ">
                                 <div class="row gy-2 overflow-hidden p-0">
-                                    
+
                                     @csrf
-                                   
-                                   
+
+
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email <span
                                                 class="text-danger">*</span></label>
@@ -134,21 +137,22 @@
                                         <input type="password" class="form-control" name="password" id="password"
                                             value="" placeholder="Votre mot de passe............." required>
                                     </div>
-                                   
+
 
                                     <hr class="w-75 mx-auto">
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button class="btn bsb-btn-xl btn-primary" type="submit">Se connecter</button>
+                                            <button class="btn bsb-btn-xl btn-primary" type="submit">Se
+                                                connecter</button>
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                       <span style="font-size: 15px" class="text-muted">
-                                        Vous n'avez pas un compte <a href="{{URL::to('/s_inscrire')}}">Créer </a>
-                                    </span> 
+                                        <span style="font-size: 15px" class="text-muted">
+                                            Vous n'avez pas un compte <a href="{{ URL::to('/s_inscrire') }}">Créer </a>
+                                        </span>
                                     </div>
-                                    
+
                                 </div>
                             </form>
 
@@ -162,6 +166,7 @@
 
 
     <script src="{{ asset('jquery-3.6.0.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('.form_connexion').on('submit', function(e) {
             e.preventDefault()
@@ -177,9 +182,16 @@
 
                     if (response.success) {
                         window.location.href = "{{ URL::to('discution') }}"
-                    } else if (response.error) {
-                        console.log(response.error)
+                    } else {
+                        //   alert('erreur de votre connexion, veiller verifier votre addresse email ou mot de pass')
+                        Swal.fire({
+                            icon: "error",
+                            title: "Erreur...",
+                            text: "Veullier verifier votre email ou mot de pass!",
+                     
+                        });
                     }
+                    // console.log(response)
                 },
                 error: (error) => {
                     console.log(error)

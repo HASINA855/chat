@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/emojionearea.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
+   
 </head>
 <style>
     * {
@@ -24,12 +25,12 @@
 
 <body class="d-flex align-items-center justify-content-center" style="height: 100vh">
     @include('animate')
-    <div class="card ">
+    <div class="card mx-sm-2 mx-2">
         <div class="main">
             @include('navbar')
         </div>
         <div class="my_discution">
-            <div class="card-body listOf_discution" style="height: 50vh;overflow-y: auto">
+            <div class="card-body listOf_discution " style="height: 70vh;overflow-y: auto">
                 @include('listeDiscution')
             </div>
         </div>
@@ -69,7 +70,7 @@
             })
         })
     </script>
-    @vite('resources/js/listeDiscution.js')
+     @vite('resources/js/listeDiscution.js')
     <script src="{{ asset('js/all.min.js') }}"></script>
 </body>
 

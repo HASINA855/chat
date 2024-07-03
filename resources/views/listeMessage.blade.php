@@ -50,22 +50,21 @@
     div.emojionearea,
     textarea {
         /* border-radius: 30px !important; */
-        padding: 0px 5px!important;
+        padding: 0px 5px !important;
         outline: none;
         resize: none;
-       
+
     }
+
     * {
         scrollbar-color: #95a5a6 #ecf0f1;
         scrollbar-width: thin;
         scroll-behavior: smooth
+    }
 
+    body {
+        background-image: url('{{ asset('inscription/images/stock-vector-abstract-white-and-gray-color-modern-design-stripes-background-with-geometric-round-shape-vector-2275076235.jpg') }}')
     }
-    body{
-        background-image: url('{{asset("inscription/images/stock-vector-abstract-white-and-gray-color-modern-design-stripes-background-with-geometric-round-shape-vector-2275076235.jpg")}}')
-    }
-    
-   
 </style>
 
 <body style="height: 100vh;" class="d-flex align-items-center justify-content-center">
@@ -90,14 +89,24 @@
     </div>
     <div class="card mx-sm-3 mx-3">
         <div class="card-header">
-            <div class="d-flex align-items-center justify-content-between" style="gap:60px">
+            <div class="d-flex flex-wrap justify-content-between" style="gap: 10px">
 
                 <div class="d-flex align-items-center justify-content-start" style="gap: 10px">
-                    <a href="{{ URL::to('/discution') }}" class="btn btn-sm btn-info px-1 shadow-none text-light" style="text-decoration: none;font-size: 15px">Back</a>
+                    <a href="{{ URL::to('/discution') }}" class="btn btn-sm btn-dark px-1 shadow-none text-light"
+                        style="text-decoration: none;font-size: 15px">Back</a>
                     <img src="{{ asset('profile_users/' . Auth::user()->profile) }}" width="40"
                         class="rounded-circle p-1" alt="">
-                    <img src="{{ asset('profile_users/' . $profile->profile) }}" width="40"
-                        class="rounded-circle p-1" alt="">
+                    <div>
+                        <img src="{{ asset('profile_users/' . $profile->profile) }}" width="40"
+                            class="rounded-circle p-1" alt="">
+
+                            @if ($profile->status!=0)
+                                <span style="font-size: 12px" class="text-muted"> <i class="fa fa-circle fa-sm mx-1 text-success"></i>en ligne</span>
+                            @endif
+                           
+                    </div>
+
+
                 </div>
                 <div class="d-flex align-items-center justify-content-end" style="gap: 10px">
 

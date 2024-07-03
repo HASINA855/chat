@@ -31,7 +31,13 @@
 
                     data += '</div>'
                     data += '</div>'
-                    data += '<div style="width: 8px;height: 8px;" class="bg-success rounded-circle">'
+                    if (response[i].user.status != 0) {
+                        data += '<div style="width: 8px;height: 8px;" class="bg-success rounded-circle">'
+                        data += '</div>'
+                    }else{
+                        data += '<div style="width: 8px;height: 8px;" class="bg-secondary rounded-circle">'
+                        data += '</div>'
+                    }
                     data += '</div>'
                     data += '</div>'
                 }

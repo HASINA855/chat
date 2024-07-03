@@ -19,6 +19,22 @@ class InscriptionController extends Controller
         }
     }
 
+    public function auth(Request $request){
+        if (
+            Auth::attempt([
+                'email' => $request->email,
+                'password' => $request->password,
+            ])
+        ) {
+            User::find(Auth::user()->id)->update([
+                'status'=>1
+            ]);
+            
+            return response()->json(['success' => 1]);
+        } else {
+            return response()->json(['error' => 0]);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      */

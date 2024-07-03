@@ -8,3 +8,7 @@ const load_discution = window.Echo.channel("listen_discution."+id_user)
             $('.main').load('listeMyMessage')
             $('.listOf_discution').load('liste0fdiscution')
 })
+
+
+
+

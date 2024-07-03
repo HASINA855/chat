@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
     <script src="{{ asset('bootstrap.min.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('inscription/css/style.css') }}">
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css " rel="stylesheet">
 </head>
 
 
@@ -30,8 +29,9 @@
         .inner {
             display: none;
         }
-        .content_form{
-            border: none!important
+
+        .content_form {
+            border: none !important
         }
     }
 </style>
@@ -39,14 +39,14 @@
 <body>
 
     <!-- Registration 4 - Bootstrap Brain Component -->
-    <section class="p-3 p-md-4 p-xl-5">
+    <section class=" d-flex align-items-center" style="height: 100vh">
         <div class="container ">
-            <div class="card border-light-subtle shadow-sm mx-auto" style="height: 90vh;width: 75%">
+            <div class="card border-light-subtle shadow-sm mx-auto" style="width: 75%">
                 <div class="row  rounded">
                     <div class="col-12 col-md-6 inner">
                         {{-- <img class="img-fluid rounded-start w-100  object-fit-cover" loading="lazy" src="{{asset("inscription/images/social-media-5187243_960_720.webp")}}"; alt="BootstrapBrain Logo"> --}}
                     </div>
-                    <div class="col-12 col-md-6 content_form" style="height: 90vh;border-left: 1px solid rgba(128, 128, 128, 0.363)">
+                    <div class="col-12 col-md-6 content_form" style="border-left: 1px solid rgba(128, 128, 128, 0.363)">
                         <div class="card-body  p-xl-5">
                             <div class="row">
                                 <div class="col-12">
@@ -92,18 +92,21 @@
                                                 class="text-danger">*</span></label>
                                         <input type="email" class="form-control" name="email" id="email"
                                             placeholder="name@example.com" required>
+                                        <span class="errorEmail text-danger" style="font-size: 10px"></span>
                                     </div>
                                     <div class="col-12">
                                         <label for="password" class="form-label">Password <span
                                                 class="text-danger">*</span></label>
                                         <input type="password" class="form-control" name="password" id="password"
                                             value="" required>
+                                        <span class="errorPassword text-danger" style="font-size: 10px"></span>
                                     </div>
                                     <div class="col-12">
                                         <label for="password" class="form-label">Confirmation <span
                                                 class="text-danger">*</span></label>
                                         <input type="password" class="form-control" name="confirmation" id="cpassword"
                                             value="" required>
+                                        <span class="errorCpassword text-danger" style="font-size: 10px"></span>
                                     </div>
 
                                     <div class="col-12 my-2">
@@ -113,11 +116,11 @@
                                     </div>
 
                                     <div class="text-center">
-                                       <span style="font-size: 15px" class="text-muted">
-                                        Avez-vous déja un compte <a href="{{URL::to('/')}}">Se connecter</a>
-                                    </span> 
+                                        <span style="font-size: 15px" class="text-muted">
+                                            Avez-vous déja un compte <a href="{{ URL::to('/') }}">Se connecter</a>
+                                        </span>
                                     </div>
-                                    
+
                                 </div>
                             </form>
 
@@ -131,7 +134,8 @@
 
 
     <script src="{{ asset('jquery-3.6.0.min.js') }}"></script>
-	<script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
         function display_image(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -145,7 +149,9 @@
 
         $('.form_inscription').on('submit', function(e) {
             e.preventDefault()
-
+            $('.errorPassword').text('')
+            $('.errorCpassword').text('')
+            $('.errorEmail').text('')
             var data = $(this)[0];
             var formData = new FormData(data)
 
@@ -157,13 +163,21 @@
                 processData: false,
                 success: (response) => {
                     if (response.success) {
-                        alert(response.success)
+                        // alert(response.success)
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success...",
+                            text: response.success,
+                        
+                        });
                         data.reset()
                         window.location.href = "{{ URL::to('/') }}"
                     }
                 },
                 error: (error) => {
-                    console.log(error)
+                    $('.errorPassword').text(error.responseJSON.errors.password)
+                    $('.errorCpassword').text(error.responseJSON.errors.confirmation)
+                    $('.errorEmail').text(error.responseJSON.errors.email)
                 }
 
             })

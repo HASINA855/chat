@@ -3,6 +3,7 @@
 use App\Events\ListeDiscutionEvent;
 use App\Events\PlaygroundEvent;
 use App\Events\ProcessingMessage;
+use App\Events\ProcessingOnDiscution;
 use App\Events\TestEventes;
 use App\Http\Controllers\Discution as ControllersDiscution;
 use App\Http\Controllers\InscriptionController;
@@ -34,19 +35,7 @@ Route::get('/', function () {
         return view('connexion');
     }
 });
-Route::post('Se_connecter', function (Request $request) {
-    // return Hash::make('aaaaaaaa');
-    if (
-        Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ])
-    ) {
-        return response()->json(['success' => 1]);
-    } else {
-        return response()->json(['error' => 0]);
-    }
-});
+Route::post('Se_connecter', [InscriptionController::class, 'auth']);
 // Route::get('inscription', [InscriptionController::class, 'index']);
 Route::post('createUser', [InscriptionController::class, 'store']);
 
@@ -67,6 +56,9 @@ Route::group(['middleware' => 'auth.user'], function () {
     Route::get('getMydiscution', [ControllersDiscution::class, 'getMydiscution']);
     Route::post('send__message', [MessageControll::class, 'send__message']);
     Route::get('deconnexion', function () {
+        User::find(Auth::user()->id)->update([
+            'status'=>0
+        ]);
         Auth::logout();
         return redirect('/');
     });
